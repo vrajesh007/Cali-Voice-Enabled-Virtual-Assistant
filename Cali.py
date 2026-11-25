@@ -99,8 +99,11 @@ if __name__=='__main__':
             time.sleep(5)
 
         elif "weather" in stmt:
-            api_key="8ef61edcf1c576d65d836254e11ea420"
-            base_url="https://api.openweathermap.org/data/2.5/weather?"
+            api_key = os.environ.get("OPENWEATHER_API_KEY", "")
+            if not api_key:
+                speak("OpenWeather API key is not configured.")
+                continue
+            base_url = "https://api.openweathermap.org/data/2.5/weather?"
             speak("whats the city name")
             city_name=takeCommand()
             complete_url=base_url+"appid="+api_key+"&q="+city_name
@@ -162,10 +165,13 @@ if __name__=='__main__':
             time.sleep(5)
 
         elif 'ask' in stmt:
+            app_id = os.environ.get("WOLFRAMALPHA_APP_ID", "")
+            if not app_id:
+                speak("WolframAlpha app ID is not configured.")
+                continue
             speak('I can answer to computational and geographical questions and what question do you want to ask now')
             question=takeCommand()
-            app_id="JJRW6X-3TGUXLG4L4"
-            client = wolframalpha.Client('JJRW6X-3TGUXLG4L4')
+            client = wolframalpha.Client(app_id)
             res = client.query(question)
             answer = next(res.results).text
             speak(answer)

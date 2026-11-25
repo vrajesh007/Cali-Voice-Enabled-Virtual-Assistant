@@ -1,109 +1,69 @@
-Cali Voice-Enabled Virtual Assistant
-====================================
+# Cali — Voice-Enabled Virtual Assistant
 
-An AI project to build an voice-enabled virtual assistant using Speech
-Recognition library of python and Sapi5 library of windows.
+A desktop voice assistant built in Python using `SpeechRecognition` for speech-to-text, `pyttsx3` (Windows SAPI5) for speech synthesis, and third-party APIs for weather, Wikipedia summaries, and computational queries.
 
-### Demo
+---
 
-![cali-demo](Cali2.png) ![cali-demo2](Cali1.png)
+## Demo
 
+<p align="center">
+  <img src="Cali-demo.gif" width="760" alt="Cali Voice Assistant Demo" />
+</p>
 
-### Packages and Libraries are required for installation using Pip install Command:
+<p align="center">
+  <img src="Cali1.png" width="380" alt="Cali console session 1" />
+  <img src="Cali2.png" width="380" alt="Cali console session 2" />
+</p>
 
-    1.Speech recognition
+---
 
-    2.Wolfram Alpha
+## Features
 
-    3.Wikipedia
+| Voice Command | Action |
+| :--- | :--- |
+| `"open youtube"` / `"open google"` / `"open gmail"` / `"open stackoverflow"` | Opens the requested site in your browser |
+| `"what is the time"` | Reads the current local time |
+| `"weather"` | Prompts for a city and reads temperature, humidity, and forecast via OpenWeatherMap |
+| `"wikipedia <topic>"` | Fetches and reads a 3-sentence summary from Wikipedia |
+| `"ask"` | Prompts for a computational or geographical question via WolframAlpha |
+| `"news"` | Opens LA Times top headlines in the browser |
+| `"camera"` / `"take a photo"` | Captures a photo from the webcam (`img.jpg`) |
+| `"search <query>"` | Searches the query in the browser |
+| `"good bye"` / `"ok bye"` / `"stop"` | Shuts down the assistant |
+| `"log off"` / `"sign out"` | Signs out of the Windows session |
 
-    4.Json
+---
 
-    5.Pyttsx3
+## Setup & Usage (Windows)
 
-    6.time
+### 1. Install Dependencies
 
-    7.Ecapture
+```bash
+pip install -r requirements.txt
+```
 
-    8.request
+> **Note:** On Windows, `pyaudio` may require `pipwin install pyaudio` if a prebuilt wheel is unavailable for your Python version. The assistant uses Windows `sapi5` via `pyttsx3`.
 
-    9.pipwin, pyaudio
+### 2. Configure API Keys
 
-    10. datetime
+Copy `.env.example` and export your keys before running:
 
-    11. os
+```bash
+# PowerShell
+$env:OPENWEATHER_API_KEY="your_openweathermap_key"
+$env:WOLFRAMALPHA_APP_ID="your_wolframalpha_app_id"
+```
 
-    12. subprocess
+### 3. Run
 
-### how to run this code:
+```bash
+python Cali.py
+```
 
-1.  first clone the repo of
-2.  install required packages and libraries using pip install "library"
-    command.
-3.  run the Cali.py file in your system(windows).
+---
 
-Other way to run the code:
+## Repository Contents
 
-1.  run the py file in your jupyter notebook with the Anaconda
-    Navigator.
-
-### About Cali :
-
-Cali can communicate with humans and can able to answer of any
-questions. Cali can interpret human commands and carry out normal
-client-defined tasks. we built it with jupyter notebook.
-
-A voice assistant is software that may assist users with a variety of
-tasks while also saving time. Helps automate several tasks that users
-may want to do.
-
-### Cali can carry out the below tasks:
-
-1.  Open wepages : youtube , G-Mail , Google-Chrome , Stack-Overflow
-
-         User : Hey Cali, Open StackOverflow
-
-2.  Current time
-
-         User : Hey Cali , What is the time?
-
-3.  Catch Top headlines from LA times
-
-         User: Can you give me the latest news?
-
-4.  Open Youtube
-
-         User:Hey Cali, Open Youtube
-
-5.  Search content from web
-
-         User: Hey Cali, Search best natural images in USA from Google
-
-6.  can answer computational and geographical questions
-
-         User: Hey Cali, Who is the presidant of USA? / Hey Cali can you add 21000  and 32222?
-
-7.  Can give prediction of Weather for any city
-
-         User: Hey Cali , What is the weather today?
-         cali: which city?
-         User: Los Angeles
-
-8.  get summary from any wikipedia
-
-         User: Hey Cali , Can you open wikipedia of star wars?
-
-9.  you can ask to cali like Who are you? and Who made you ?
-
-10. good bye greeting to shuting down the Cali:
-
-        User: Okay Bye!
-
-Cali makes use of third - party APIs to forecast weather in several
-cities and to answer geographical and computational inquiries. You can
-create an account with one of the following applications to get free API
-id or keys.
-
-    OpenWeatherMap - To predict weather
-
-    Wolfram|Alpha - To give answer about geographical and computational questions.
+- `Cali.py` — Main voice recognition loop and command handlers
+- `requirements.txt` — Third-party pip dependencies (`SpeechRecognition`, `pyttsx3`, `wikipedia`, `wolframalpha`, `ecapture`, `requests`, `pyaudio`)
+- `.env.example` — Environment variable template for OpenWeatherMap and WolframAlpha
